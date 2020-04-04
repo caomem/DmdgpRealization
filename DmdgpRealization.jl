@@ -90,8 +90,7 @@ function sysGenerate(B, α = 1)
         return ["x/|x|" "y/|y|" "z/|z|" "i"; B*unk*α]
 end
 
-function flatProjection(A)
-	x̂ = [cos(π/4) -cos(π/4)]'*0.5
+function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5)
 	return [A[2:3,1]+x̂*A[1,1] A[2:3,2]+x̂*A[1,2] A[2:3,3]+x̂*A[1,3] A[2:3,4]+x̂*A[1,4]]
 end
 
