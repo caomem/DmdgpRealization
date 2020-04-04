@@ -1,30 +1,30 @@
 using LinearAlgebra
 
-Rx(θ::Float64) = [1 0 0 0; 
+Rx(θ::Real) = [1 0 0 0; 
         0 cos(θ) -sin(θ) 0; 
         0 sin(θ) cos(θ) 0;
         0 0 0 1]
 
-Ry(θ::Float64) = [cos(θ) 0 -sin(θ) 0; 
+Ry(θ::Real) = [cos(θ) 0 -sin(θ) 0; 
         0 1 0 0; 
         sin(θ) 0 cos(θ) 0;
         0 0 0 1]
 
-Rz(θ::Float64) = [cos(θ) -sin(θ) 0 0;
+Rz(θ::Real) = [cos(θ) -sin(θ) 0 0;
         sin(θ) cos(θ) 0 0;
         0 0 1 0;
         0 0 0 1]
 
-Tx(d::Float64) = [1 0 0 d;
+Tx(d::Real) = [1 0 0 d;
         0 1 0 0;
         0 0 1 0;
         0 0 0 1]
 
 π = pi
 d = 2
-angToRad(ang::Float64) = (π/180)*ang
-θ(ang::Float64 = 140) = angToRad(ang)
-ω(ang::Float64 = 160) = angToRad(ang)
+angToRad(ang::Real) = (π/180)*ang
+θ(ang::Real = 140) = angToRad(ang)
+ω(ang::Real = 160) = angToRad(ang)
 
 function bondangle(i,D)#i=3,...,n
 	c = (-D[i-2,i]^2+ D[i-1,i]^2+ D[i-2,i-1]^2)/(2.0*D[i-1,i]*D[i-2,i-1])
