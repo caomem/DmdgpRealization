@@ -97,5 +97,5 @@ end
 
 rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(40))*Rx(π)
 
-print("finish\n")
-sysGenerate(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
+print("DmdgpRealization included\n")
+#(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
