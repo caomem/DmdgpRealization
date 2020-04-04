@@ -4,9 +4,9 @@ This is mainly used for to construct the realized points and visualize the rotat
 
 ## Basic Usage
 
-For visualize a point with your own coordinate system, use the `sysGenerate()` function passing its cumulative torsion matrix $C$ as parameter $^1$. Optionally, to scale the result, you can change the parameter scalar $\alpha$, which is equal to 1 by default. 
+For visualize a point with your own coordinate system, use the `sysGenerate()` function passing its cumulative torsion matrix C as parameter\*. Optionally, to scale the result, you can change the parameter scalar α, which is equal to 1 by default. 
 
-> $^1$ The matrix $C$ is as defined in *A branch‐and‐prune algorithm for the molecular distance geometry problem* -- by Liberti, L., Lavor, C. and Maculan, N. (2008).
+> \* The matrix C is as defined in *A branch‐and‐prune algorithm for the molecular distance geometry problem* -- by Liberti, L., Lavor, C. and Maculan, N. (2008).
 
 For example, 
 
@@ -28,7 +28,7 @@ Where the secound, third and fourth columns refer, respectively, to the position
 
 ### Flat Projection
 
-You also can use the `flatProjection()` function to help the creating of flat figures with the points. Just pass the cumulative matrix $C$ as a parameter and you will receive a matrix (with one line missing) representing the flat projections of the vectors of each column through the isometric perspective. Optionally, you can also change the perspective by passing the parameter $\hat{x}$ as the two-dimensional vector that defines the direction of the third axis in the plane.
+You also can use the `flatProjection()` function to help the creating of flat figures with the points. Just pass the cumulative matrix C as a parameter and you will receive a matrix (with one line missing) representing the flat projections of the vectors of each column through the isometric perspective. Optionally, you can also change the perspective by passing the parameter x̂ as the two-dimensional vector that defines the direction of the third axis in the plane.
 
 For example,
 
