@@ -94,7 +94,7 @@ function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5)
 	return [A[2:3,1]+x̂*A[1,1] A[2:3,2]+x̂*A[1,2] A[2:3,3]+x̂*A[1,3] A[2:3,4]+x̂*A[1,4]]
 end
 
-rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(40))*Rx(π)
+#rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(40))*Rx(π)
 
 print("DmdgpRealization included\n")
-#(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
+#sysGenerate(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
