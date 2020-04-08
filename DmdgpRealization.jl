@@ -23,7 +23,7 @@ Tx(d::Real) = [1 0 0 d;
 π = pi
 d = 2
 angToRad(ang::Real) = (π/180)*ang
-θ(ang::Real = 140) = angToRad(ang)
+θ(ang::Real = 150) = angToRad(ang) #70
 ω(ang::Real = 160) = angToRad(ang)
 
 function bondangle(i,D)#i=3,...,n
@@ -94,7 +94,10 @@ function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5)
 	return [A[2:3,1]+x̂*A[1,1] A[2:3,2]+x̂*A[1,2] A[2:3,3]+x̂*A[1,3] A[2:3,4]+x̂*A[1,4]]
 end
 
-#rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(40))*Rx(π)
+#rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(30))*Rx(π)
 
 print("DmdgpRealization included\n")
 #sysGenerate(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
+#Bo = B2*B3*Bi(ω(230),θ(120))
+#B = Bi(ω(230),θ(120))
+#sysGenerate(flatProjection(rotationFactor*Bo*B*B*B), 20)
