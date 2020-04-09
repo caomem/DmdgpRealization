@@ -28,11 +28,73 @@ angToRad(ang::Real) = (π/180)*ang
 
 B1 = I(4) #nada a fazer
 
-B2 =  Ry(π)*Tx(d)
+#B2 =  Ry(π)*Tx(d)
 
-B3 = Rx(π)*Rz(θ())*Ry(π)*Tx(d)
+B2 = zeros(4,4)
+B2[1,1] = -1.0
+B2[2,2] = 1.0
+B2[3,3] = -1.0
+B2[4,4] = 1.0
+B2[1,4] = -d
 
-Bi(ω = ω(), θ = θ(), d = d) = Rx(ω)*Rx(π)*Rz(θ)*Ry(π)*Tx(d)
+#B3 = Rx(π)*Rz(θ())*Ry(π)*Tx(d)
+
+# tird atom
+D12 = d
+D13 = 3.8637
+D23 = 2
+D14 = 0.0
+D24 = 0.0
+D34 = 0.0
+cθ,sθ = (cos(150),sin(150))
+cω,sω = (0.0,0.0)
+B3 = zeros(4,4)
+B3[1,1] = -cθ
+B3[1,2] = -sθ
+B3[1,4] = -D23*cθ
+B3[2,1] = sθ
+B3[2,2] = -cθ
+B3[2,4] = D23*sθ
+B3[3,3] = 1.0
+B3[4,4] = 1.0
+
+function torsionmatrix(cosθ,sinθ,cosω,sinω,d34,sign::Bool)
+	if sign == true
+		
+		B=zeros(4,4)
+		B[1,1] = -cosθ
+		B[1,2] = -sinθ
+		B[1,4] = -d34*cosθ
+		B[2,1] = sinθ*cosω
+		B[2,2] = -cosθ*cosω
+		B[2,3] = -sinω
+		B[2,4] = d34*sinθ*cosω
+		B[3,1] = sinθ*sinω
+		B[3,2] = -cosθ*sinω
+		B[3,3] = cosω
+		B[3,4] = d34*sinθ*sinω 
+		B[4,4] = 1
+	else
+		
+		B=zeros(4,4)
+		B[1,1] = -cosθ
+		B[1,2] = -sinθ
+		B[1,4] = -d34*cosθ
+		B[2,1] = sinθ*cosω
+		B[2,2] = -cosθ*cosω
+		B[2,3] = sinω
+		B[2,4] = d34*sinθ*cosω
+		B[3,1] = -sinθ*sinω
+		B[3,2] = cosθ*sinω
+		B[3,3] = cosω
+		B[3,4] = -d34*sinθ*sinω 
+		B[4,4] = 1
+		
+	end
+	return B
+end
+
+Bi(ω = ω(), θ = θ(), d = d) = torsionmatrix(cos(θ), sin(θ), cos(ω), sin(ω), d, true) #Bi(ω = ω(), θ = θ(), d = d) = Rx(ω)*Rx(π)*Rz(θ)*Ry(π)*Tx(d)
 
 Bi′(B) = B*inv(Tx(d))
 
