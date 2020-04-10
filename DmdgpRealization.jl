@@ -40,21 +40,14 @@ B2[1,4] = -d
 #B3 = Rx(π)*Rz(θ())*Ry(π)*Tx(d)
 
 # tird atom
-D12 = d
-D13 = 3.8637
-D23 = 2
-D14 = 0.0
-D24 = 0.0
-D34 = 0.0
-cθ,sθ = (cos(150),sin(150))
-cω,sω = (0.0,0.0)
+cθ,sθ = (cos(θ()),sin(θ()))
 B3 = zeros(4,4)
 B3[1,1] = -cθ
 B3[1,2] = -sθ
-B3[1,4] = -D23*cθ
+B3[1,4] = -d*cθ
 B3[2,1] = sθ
 B3[2,2] = -cθ
-B3[2,4] = D23*sθ
+B3[2,4] = d*sθ
 B3[3,3] = 1.0
 B3[4,4] = 1.0
 
@@ -94,7 +87,7 @@ function torsionmatrix(cosθ,sinθ,cosω,sinω,d34,sign::Bool)
 	return B
 end
 
-Bi(ω = ω(), θ = θ(), d = d) = torsionmatrix(cos(θ), sin(θ), cos(ω), sin(ω), d, true) #Bi(ω = ω(), θ = θ(), d = d) = Rx(ω)*Rx(π)*Rz(θ)*Ry(π)*Tx(d)
+Bi(ω = ω(), θ = θ(), d = d) = torsionmatrix(cos(angToRad(θ)), sin(angToRad(θ)), cos(angToRad(ω)), sin(angToRad(ω)), d, false) #Bi(ω = ω(), θ = θ(), d = d) = Rx(ω)*Rx(π)*Rz(θ)*Ry(π)*Tx(d)
 
 Bi′(B) = B*inv(Tx(d))
 
@@ -107,9 +100,13 @@ function sysGenerate(B, α = 1)
         return ["x/|x|" "y/|y|" "z/|z|" "i"; B*unk*α]
 end
 
-function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5)
-	return [A[2:3,1]+x̂*A[1,1] A[2:3,2]+x̂*A[1,2] A[2:3,3]+x̂*A[1,3] A[2:3,4]+x̂*A[1,4]]
-end
+function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5; x :: Bool = true)
+	if x
+		return [A[2:3,1]+x̂*A[1,1] A[2:3,2]+x̂*A[1,2] A[2:3,3]+x̂*A[1,3] A[2:3,4]+x̂*A[1,4]]
+	else
+		return [A[1:2,1]+x̂*A[3,1] A[1:2,2]+x̂*A[3,2] A[1:2,3]+x̂*A[3,3] A[1:2,4]+x̂*A[3,4]]
+	end
+end	
 
 #rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(30))*Rx(π)
 
