@@ -1,6 +1,6 @@
 # DmdgpRealization
 
-This is mainly used for to construct the realized points and visualize the rotations in the coordinate system when applying the realization operations.  
+This is mainly used to construct the realized points and visualize the rotations in the coordinate system when applying the realization operations.  
 
 ## Basic Usage
 
