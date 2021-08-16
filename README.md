@@ -24,7 +24,7 @@ that results in:
   1.99024    1.70985    1.96962    1.32683
   1.0        1.0        1.0        1.0
 ```
-Where the secound, third and fourth columns refer, respectively, to the positions x, y and z of the elements named by the first line. The fifth line is about the asijdaoi homogeneous model.
+Where the secound, third and fourth lines refer, respectively, to the positions x, y and z of the elements named by the first line. The fifth line is about the homogeneous model.
 
 ### Flat Projection
 
