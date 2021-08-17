@@ -133,3 +133,10 @@ print("DmdgpRealization included\n")
 #Bo = B2*B3*Bi(ω(230),θ(120))
 #B = Bi(ω(230),θ(120))
 #sysGenerate(flatProjection(rotationFactor*Bo*B*B*B), 20)
+
+# a good initial image 
+
+# plotFlatProjection(flatProjection(B1, [-cos(π/4) -cos(π/4)]'*0.707))
+# plotFlatProjection(flatProjection(B1*Ry(π)*Tx(2.5), [-cos(π/4) -cos(π/4)]'*0.707), static = true)
+# plotFlatProjection(flatProjection(B1*B2*Rx(π)*Rz(θ(75))*Ry(π)*Tx(2.5), [-cos(π/4) -cos(π/4)]'*0.707), static = true)
+# ylims!((-1,2)); xlims!((-1,4))
