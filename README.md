@@ -46,8 +46,14 @@ that results in
  -0.353553  0.0       1.0       0.0
 ```
 
+Furthermore, if you want visualize the projection, you can use the `plotFlatProjection()` function passing the projection matrix as parameter, as follow:
 
+```julia
+plotFlatProjection(flatProjection(B1)) 
+plotFlatProjection(flatProjection(B1*B2), static = true) # use the static param to draw over the last plot
+plotFlatProjection(flatProjection(B1*B2*B3), static = true)
+```
+that results in the visualization of the three initial vertices and your coordinates systems
 
-
-
+<img src="plotExample.png" width="500" style="background-color:white">
 

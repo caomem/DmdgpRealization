@@ -1,4 +1,4 @@
-using LinearAlgebra
+using LinearAlgebra, Plots
 
 Rx(θ::Real) = [1 0 0 0; 
         0 cos(θ) -sin(θ) 0; 
@@ -96,8 +96,12 @@ unk = [1 0 0 0;
         0 0 1 0;
         1 1 1 1]
 
-function sysGenerate(B, α = 1)
-        return ["x/|x|" "y/|y|" "z/|z|" "i"; B*unk*α]
+function sysGenerate(B, α = 1; title = true)
+    if title
+		return ["x/|x|" "y/|y|" "z/|z|" "i"; B*unk*α]		
+	else
+		return B*unk*α
+	end
 end
 
 function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5; x :: Bool = true)
@@ -108,9 +112,23 @@ function flatProjection(A, x̂ = [cos(π/4) -cos(π/4)]'*0.5; x :: Bool = true)
 	end
 end	
 
-#rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(30))*Rx(π)
+function plotFlatProjection(B; sprain=1.01, static = false)
+	param = [B[1,4]+B[2,4]im, B[1,4]+B[2,4]im+B[1,1]+B[2,1]im, Inf, B[1,4]+B[2,4]im, B[1,4]+B[2,4]im+B[1,2]+B[2,2]im, Inf, B[1,4]+B[2,4]im, B[1,4]+B[2,4]im+B[1,3]+B[2,3]im]
+	if static
+		plot!(param, arrow = 2)
+	else
+		plot(param, arrow = 2)
+	end
+	annotate!(B[1,4]*sprain, B[2,4]*sprain, text("v", :black, :right, 10))
+	annotate!(B[1,4]+B[1,1]*sprain, B[2,4]+B[2,1]*sprain, text("x", :black, :right, 10))
+	annotate!(B[1,4]+B[1,2]*sprain, B[2,4]+B[2,2]*sprain, text("y", :black, :right, 10))
+	annotate!(B[1,4]+B[1,3]*sprain, B[2,4]+B[2,3]*sprain, text("z", :black, :right, 10))
+	# ylims!((-1.5,2)); xlims!((-1.5,1.5))
+end
 
 print("DmdgpRealization included\n")
+
+#rotationFactor = Rz(π/2)*Rx(π/2)*Rz(-θ(30))*Rx(π)
 #sysGenerate(flatProjection(rotationFactor*B2*B3*Bi(ω(230),θ(120))), 20)
 #Bo = B2*B3*Bi(ω(230),θ(120))
 #B = Bi(ω(230),θ(120))
