@@ -11,18 +11,19 @@ For visualize a point with your own coordinate system, use the `sysGenerate()` f
 For example, 
 
 ```julia
-C = B1*B2*B3*Bi(ω(230), θ(120))
+C = B1*B2*B3*Bi(230, 120)
 sysGenerate(C)
 ```
 that results in: 
 
 ```shell
 5×4 Array{Any,2}:
-   "x/|x|"    "y/|y|"    "z/|z|"    "i"
- -5.75462   -4.55695   -4.52137   -5.01377
-  0.970454   0.272622   1.66232    1.07549
-  1.99024    1.70985    1.96962    1.32683
-  1.0        1.0        1.0        1.0
+  "x/|x|"   "y/|y|"    "z/|z|"   "i"
+ 0.766368  0.0780718  0.792105  0.0722586
+ 2.71775   1.51457    2.17629   2.43829
+ 1.99024   1.70985    0.68404   1.32683
+ 1.0       1.0        1.0       1.0
+
 ```
 Where the secound, third and fourth lines refer, respectively, to the positions x, y and z of the elements named by the first line. The fifth line is about the homogeneous model.
 
