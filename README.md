@@ -57,3 +57,7 @@ that results in the visualization of the three initial vertices and your coordin
 
 <img src="plotExample.png" width="500" style="background-color:white">
 
+-----
+
+## References
+The calculation of coordinate systems is based in Thompson, H. Bradford. "Calculation of cartesian coordinates and their derivatives from internal molecular coordinates." The Journal of Chemical Physics 47.9 (1967): 3407-3410.
